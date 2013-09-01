@@ -1,0 +1,82 @@
+{% extends 'CmfcmfRSABundle::RSA/index.html.twig' %}
+
+{% block content_header '' %}
+
+
+{% block content %}
+    <h2>Verschlüsseln</h2>
+    <br />    
+    <form id="form" method="post">
+        <label for="n">n</label>
+        <input type="text" name="n" maxlength="20" value="{{ n }}" />
+        <label for="e">e</label>
+        <input type="text" name="e" maxlength="20" value="{{ e }}"/>
+        <label for="normalText">Zu verschlüsselnder Text</label>
+        <textarea name="normalText" rows="5" cols="50"></textarea>
+        <button type="submit" value="Verschlüsseln">Verschlüsseln</button>
+    </form>
+    <br />
+    <h2>Entschlüsseln</h2>
+    <form id="form" method="post">
+        <label for="specialText">Zu entschlüsselnder Text</label>
+        <textarea name="specialText" rows="5" cols="50"></textarea>
+        <button type="submit" value="Entschlüsseln">Entschlüsseln</button>
+    </form>
+    {% set code = code(_self) %}
+    
+    <style type="text/css">
+        form#form > label {
+            font-weight: bold;
+            font-size: 120%;
+            margin-bottom: 5px;
+        }
+        
+        form#form > label:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+        form#form > textarea {
+            display: block;
+            width: 90%;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.428571429;
+            color: #555555;
+            vertical-align: middle;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        }
+
+        form#form input {
+            display: block;
+            width: 90%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.428571429;
+            color: #555555;
+            vertical-align: middle;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        }
+    </style>
+    <p>Hier nochmals Ihre zuletzt generierten Schlüssel:</p>
+    <ul style="font-size: 80%">
+        <li>d: {{ d }}</li>
+        <li>n: {{ n }}</li>
+        <li>e: {{ e }}</li>
+    </ul>
+{% endblock %}

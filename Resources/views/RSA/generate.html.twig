@@ -1,0 +1,86 @@
+{% extends 'CmfcmfRSABundle::layout.html.twig' %}
+
+{% block content_header '' %}
+
+
+{% block content %}
+    <h3>Schlüssel Generator</h3>
+    <p>Der Generator hat aus {{ nrPrimeNumbers }} Primzahlen zwei zufällig für Sie gewählt. Wenn Sie möchten, können Sie aber auch zwei andere möglichst große Primzahlen p und q wählen!<br />Eine Liste mit großen Primzahlen finden Sie zum Beispiel <a href="http://primzahlen.zeta24.com/de/primzahltabelle100-000.php">hier</a> oder <a href="http://primzahlen.zeta24.com/de/primzahltabelle.php?von=236423874">hier</a>.</p>
+    {{ form(form) }}
+    
+    
+    <style type="text/css">
+        form > div#form > div {
+            margin: 20px;
+        }
+        
+        form > div#form > div > label {
+            font-weight: bold;
+            font-size: 120%;
+            margin-bottom: 5px;
+        }
+        
+        form > div#form > div > label:before {
+            content: "Wert für ";
+        }
+        
+        form > div#form > div > label:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+        form > div#form > div > input {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.428571429;
+            color: #555555;
+            vertical-align: middle;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        }
+
+        form > div#form > div > ul > li {
+            margin-top: 5px;
+            font-weight: bold;
+            color: #FF4000;
+        }
+    </style>
+    <script type="text/javascript">
+        function PrimzahlCheck (Zahl) {
+          if (Zahl >= 2) {
+            var Grenzzahl = Zahl / 2;
+            var Check = 1;
+            for (var i = 2; i <= Grenzzahl; i++)
+              if (Zahl % i == 0) {
+                alert('Bitte geben Sie für p und q zwei Primzahlen ein!');
+                return false;
+                Check = 0;
+              }
+            if (Check == 1)
+              return true;
+          } else {
+            alert('Bitte geben Sie für p und q zwei Primzahlen ein!');
+            return false;
+          }
+        }
+        document.forms[0].onsubmit = function() {
+            var p,q;
+            p = document.getElementById('form_p').value;
+            q = document.getElementById('form_q').value;
+           // if (!PrimzahlCheck(parseInt(p)) || !PrimzahlCheck(parseInt(q))) {
+           //     return false;
+          //  }
+        };
+    </script>
+    {% set code = code(_self) %}
+{% endblock %}

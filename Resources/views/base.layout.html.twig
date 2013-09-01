@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset={{ _charset }}"/>
+    <meta name="robots" content="noindex,nofollow" />
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{{ asset('bundles/framework/css/structure.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ asset('bundles/framework/css/body.css') }}" rel="stylesheet" type="text/css" media="all" />
+    {% block head %}{% endblock %}
+    <style type="text/css">
+        .header-title {
+            display: inline-block;
+        }
+        .header-title > h1 {
+            margin-bottom: 0;
+        }
+        .header-title > p {
+            font-style: italic;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .header-logo i.icon-key {
+            font-size: 7em;
+        }
+        .header-logo > a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .header-box {
+            width: 30% !important;
+            text-align: right !important;
+            float: right !important;
+            margin-right: -30px !important;
+            margin-bottom: 0 !important;
+            padding: 20px !important;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    <div class="header clear-fix">
+        <div class="header-logo">
+            <a href="{{ url('cmfcmf_rsa_rsa_index') }}">
+                <i class="icon-key"></i>
+                <div class="header-title">
+                    <h1> Online RSA Generator</h1>
+                    <p>© Christian Flach</p>
+                </div>
+            </a>
+        </div>
+
+        {% if d is defined %}
+        <div class="sf-reset">
+            <div class="block header-box">
+                <h2>Ihre Schlüssel</h2>
+                <p>Öffentlicher Schlüssel:<br /><strong>n: {{ n }}, e: {{ e }}</strong></p>
+                <p>Privater Schlüssel:<br /><strong>d: {{ d }}</strong></p>
+            </div>
+        </div>
+        {% endif %}
+        <!--
+        <div class="search">
+            <form method="get" action="http://symfony.com/search" target="_blank">
+                <div class="form-row">
+                    <label for="search-id">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAABUElEQVQoz2NgAIJ29iBdD0d7X2cPb+tY2f9MDMjgP2O2hKu7vS8CBlisZUNSMJ3fxRMkXO61wm2ue6I3iB1q8Z8ZriDZFCS03fm/wX+1/xp/TBo8QPxeqf+MUAW+QIFKj/+q/wX/c/3n/i/6Qd/bx943z/Q/K1SBI1D9fKv/AhCn/Wf5L5EHdFGKw39OqAIXoPpOMziX4T9/DFBBnuN/HqhAEtCKCNf/XDA/rZRyAmrpsvrPDVUw3wrkqCiLaewg6TohX1d7X0ffs5r/OaAKfinmgt3t4ulr4+Xg4ANip3j+l/zPArNT4LNOD0pAgWCSOUIBy3+h/+pXbBa5tni0eMx23+/mB1YSYnENroT5Pw/QSOX/mkCo+l/jgo0v2KJA643s8PgAmsMBDCbu/5xALHPB2husxN9uCzsDOgAq5kAoaZVnYMCh5Ky1r88Eh/+iABM8jUk7ClYIAAAAAElFTkSuQmCC" alt="Search on Symfony website" />
+                    </label>
+
+                    <input name="q" id="search-id" type="search" placeholder="Search on Symfony website" />
+
+                    <button type="submit" class="sf-button">
+                                <span class="border-l">
+                                    <span class="border-r">
+                                        <span class="btn-bg">OK</span>
+                                    </span>
+                                </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+        -->
+    </div>
+
+    <div class="sf-reset">
+        {% block body %}{% endblock %}
+    </div>
+</div>
+</body>
+</html>

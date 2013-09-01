@@ -1,0 +1,96 @@
+{% extends "CmfcmfRSABundle::base.layout.html.twig" %}
+
+{% block head %}
+    <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/acmedemo/css/demo.css') }}" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <style>
+        .illustration > i {
+            font-size: 8em
+        }
+        .illustration {
+            padding-bottom: 0 !important;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}Online RSA Generator{% endblock %}
+
+{% block body %}
+    {% block content_header %}
+        <ul id="menu">
+            {% block content_header_more %}
+                <li><a href="{{ path('_demo') }}">Demo Home</a></li>
+            {% endblock %}
+        </ul>
+
+        <div style="clear: both"></div>
+    {% endblock %}
+
+    <div class="block">
+        <div class="symfony-blocks-welcome">
+            <div class="block-quick-tour">
+                <div class="illustration">
+                    <i class="icon-key"></i>
+                </div>
+                <a href="{{ path('cmfcmf_rsa_rsa_generate') }}" class="sf-button sf-button-selected">
+                <span class="border-l">
+                    <span class="border-r">
+                        <span class="btn-bg">Schlüssel generieren</span>
+                    </span>
+                </span>
+                </a>
+            </div>
+            <div class="block-configure">
+                <div class="illustration">
+                    <i class="icon-cog"></i>
+                </div>
+                <a href="{{ path('cmfcmf_rsa_rsa_rsa') }}" class="sf-button sf-button-selected">
+                <span class="border-l">
+                    <span class="border-r">
+                        <span class="btn-bg">Ent- und Verschlüsseln</span>
+                    </span>
+                </span>
+                </a>
+            </div>
+            <div class="block-demo">
+                <div class="illustration">
+                    <i class="icon-info"></i>
+                </div>
+                <a href="{{ path('cmfcmf_rsa_rsa_how') }}" class="sf-button sf-button-selected">
+                <span class="border-l">
+                    <span class="border-r">
+                        <span class="btn-bg">Wieso? Weshalb? Warum?</span>
+                    </span>
+                </span>
+                </a>
+            </div>
+        </div>
+        <br />
+
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <p>{{ flashMessage }}</p>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <p style="color: #f40">{{ flashMessage }}</p>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('rawData') %}
+            <p style="word-wrap: break-word"><strong>Ergebnis der Berechnung:</strong> <u>{{ flashMessage }}</u></p>
+        {% endfor %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    {% if code is defined %}
+        <div class="block">
+            <h1>Code behind this page</h1>
+            <div class="symfony-content">{{ code|raw }}</div>
+        </div>
+    {% endif %}
+
+    {% if sourceCode is defined %}
+        <div class="block">
+            <div class="symfony-content">{{ sourceCode|raw }}</div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'CmfcmfRSABundle::RSA/index.html.twig' %}
+
+{% block content_header '' %}
+
+
+{% block content %}
+    <h3>Ihr RSA Schlüssel wurde erfolgreich generiert!</h3>
+    <br />
+    <p>Der <strong>geheime</strong> Schlüssel <em>d</em> lautet: <u>{{ d }}</u><br />
+    Der <strong>öffentliche</strong> Schlüssel <em>n;e</em> lautet: <u>{{ n }};{{ e }}</u></p>
+    <p>Hier sehen Sie nochmals alle gegebenen und errechneten Parameter:</p>
+    <ul style="font-size: 80%">
+        <li>p: {{ p }}</li>
+        <li>q: {{ q }}</li>
+        <li>n: {{ n }}</li>
+        <li>phi: {{ phi }}</li>
+        <li>d: {{ d }}</li>
+        <li>e: {{ e }}</li>
+    </ul>
+    <br />
+    {{ parent() }}
+{% endblock %}
