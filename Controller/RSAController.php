@@ -20,8 +20,8 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * @Route("RSA")
- * @Cache(maxage="0")
- * //@Cache(maxage="86400")
+ * //@Cache(maxage="0")
+ * @Cache(maxage="86400")
  */
 class RSAController extends Controller implements InitializableControllerInterface
 {
@@ -73,8 +73,8 @@ class RSAController extends Controller implements InitializableControllerInterfa
         $p = $this->primeNumbers[mt_rand(0, $this->nrPrimeNumbers - 1)];
         $q = $this->primeNumbers[mt_rand(0, $this->nrPrimeNumbers - 1)];
 
-     //   $rsa->setP($p);
-     //   $rsa->setQ($q);
+        $rsa->setP($p);
+        $rsa->setQ($q);
 
         $form = $this->createFormBuilder($rsa)
             ->add('p', 'text')
@@ -260,7 +260,7 @@ class RSAController extends Controller implements InitializableControllerInterfa
         if ($phi < 100000) {
             $this->calcDEStupid($phi, $d, $e);
         } else {
-            $e = $this->primeNumbers[3]; //mt_rand(0, $this->nrPrimeNumbers - 1)];
+            $e = $this->primeNumbers[mt_rand(0, $this->nrPrimeNumbers - 1)];
 
             $d = $this->invmod($e, $phi);
         }
@@ -334,14 +334,14 @@ class RSAController extends Controller implements InitializableControllerInterfa
 
         $return = "";
         $return .= <<<EOF
-<p><strong>Controller Code</strong></p>
+<h2><strong>Controller Code</strong></h2>
 <pre style="word-wrap: break-word;"><code>$controller</code></pre>
-<p><strong>Entity Code</strong></p>
+<h2><strong>Entity Code</strong></h2>
 <pre style="word-wrap: break-word;">$entity</pre>
 EOF;
         $templates = $this->getTemplateCodes();
-        foreach ($templates as $template) {
-            $return .= "<p><strong>Template Code</strong></p>";
+        foreach ($templates as $key => $template) {
+            $return .= "<br /><h2><strong>Template Code #" . ($key + 1) . "</strong></h2>";
             $return .= "<pre style=\"word-wrap: break-word;\"><code>" . htmlspecialchars($template) . "</code></pre>";
         }
 
